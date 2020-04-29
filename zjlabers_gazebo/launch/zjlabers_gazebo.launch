@@ -1,0 +1,12 @@
+<launch>
+	<include file="$(find zjlabers_model)/launch/model.launch" />
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+                <arg name="paused" value="true" />
+                <arg name="world_name" value="$(find zjlabers_gazebo)/worlds/zjlabers.world"/>
+        </include> 
+
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model zjlabers -x -1.0 -y 0.0 -z 0.8" />
+	<include file="$(find zjlabers_gazebo)/launch/zjlabers_controllers.launch" />
+
+</launch>
